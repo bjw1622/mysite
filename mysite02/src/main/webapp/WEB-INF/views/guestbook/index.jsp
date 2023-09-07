@@ -49,7 +49,8 @@ List<GuestbookVo> list = (List<GuestbookVo>) request.getAttribute("list");
 								<td><%=count--%></td>
 								<td><%=gvo.getName()%></td>
 								<td><%=gvo.getRegDate()%></td>
-								<td><a href="<%=request.getContextPath() %>/guestbook?a=deleteform&no=<%=gvo.getNo()%>">삭제</a></td>
+								<td><a
+									href="<%=request.getContextPath()%>/guestbook?a=deleteform&no=<%=gvo.getNo()%>">삭제</a></td>
 							</tr>
 							<tr>
 								<td colspan=4><%=gvo.getContents().replaceAll("\n", "<br>")%></td>
