@@ -18,7 +18,7 @@ UserVo authUser = (UserVo) session.getAttribute("authUser");
 			} else {
 			%>
 		
-		<li><a href="<%=request.getContextPath()%>/user?a=updatefrom">회원정보수정</a>
+		<li><a href="<%=request.getContextPath()%>/user?a=updateform">회원정보수정</a>
 		<li>
 		<li><a href="<%=request.getContextPath()%>/user?a=logout">로그아웃</a>
 		<li>

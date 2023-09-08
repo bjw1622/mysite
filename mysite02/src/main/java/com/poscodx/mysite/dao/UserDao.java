@@ -26,11 +26,11 @@ public class UserDao {
 			pstmt.setString(2, password);
 
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				Long no = rs.getLong(1);
 				String name = rs.getString(2);
-				
+
 				userVo = new UserVo();
 				userVo.setNo(no);
 				userVo.setName(name);
@@ -60,9 +60,7 @@ public class UserDao {
 		return userVo;
 	}
 
-	public Boolean insert(UserVo vo) {
-		boolean result = false;
-
+	public void insert(UserVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -76,7 +74,85 @@ public class UserDao {
 			pstmt.setString(3, vo.getPassword());
 			pstmt.setString(4, vo.getGender());
 
-			int count = pstmt.executeUpdate();
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public String findEmail(Long no) {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String email = "";
+
+		try {
+			conn = getConnection();
+
+			String sql = "select email from user where no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, no);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				email = rs.getString(1);
+			}
+
+			// 5. 결과 처리
+
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return email;
+	}
+	public Boolean updateNameAndPassword(String name, String password,Long no,String gender) {
+		boolean result = false;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			conn = getConnection();
+
+			String sql = "UPDATE user SET name=?, password=password(?),gender=? WHERE no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			pstmt.setString(3, gender);
+			pstmt.setLong(4,no);
+
+			pstmt.executeUpdate();
 
 			// 5. 결과 처리
 			result = count == 1;
