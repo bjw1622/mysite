@@ -29,6 +29,6 @@ public class JoinAction implements Action{
 		new UserDao().insert(userVo);
 
 		response.sendRedirect(request.getContextPath() + "/user?a=joinsuccess");
-	}
+		}
 
 }
