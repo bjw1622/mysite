@@ -12,20 +12,23 @@ import com.poscodx.mysite.vo.UserVo;
 import com.poscodx.web.mvc.Action;
 import com.poscodx.web.utils.WebUtil;
 
-public class UpdateformAction implements Action {
+public class UpdateFormAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// Access Control(접근제어)
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Access Control(보안, 인증체크)
 		HttpSession session = request.getSession();
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
-			response.sendRedirect(request.getContextPath()+"/user?a=loginform");
+			response.sendRedirect(request.getContextPath());
 			return;
-		}	
-		String email = new UserDao().findEmail(authUser.getNo());
-		System.out.println(email);
-		request.setAttribute("email", email);
+		}
+		//////////////////////////////////////////////////////
+		
+		Long no = authUser.getNo();
+		UserVo userVo = new UserDao().findByNo(no);
+		
+		request.setAttribute("userVo", userVo);
 		WebUtil.forward("user/updateform", request, response);
 	}
 

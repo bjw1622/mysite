@@ -19,5 +19,4 @@ public class LogoutAction implements Action {
 		
 		response.sendRedirect(request.getContextPath());
 	}
-
 }
