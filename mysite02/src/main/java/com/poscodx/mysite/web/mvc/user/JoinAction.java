@@ -13,21 +13,22 @@ import com.poscodx.web.mvc.Action;
 public class JoinAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String gender = request.getParameter("gender");
-		
+
 		UserVo userVo = new UserVo();
 		userVo.setName(name);
 		userVo.setEmail(email);
 		userVo.setPassword(password);
 		userVo.setGender(gender);
-		
+
 		new UserDao().insert(userVo);
-	
-		response.sendRedirect(request.getContextPath() + "/user?a=joinsuccess");
+
+		response.sendRedirect(request.getContextPath()+"/user?a=joinsuccess");
+
 	}
 
 }

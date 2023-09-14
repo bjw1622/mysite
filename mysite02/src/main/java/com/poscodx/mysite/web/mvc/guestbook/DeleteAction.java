@@ -10,13 +10,14 @@ import com.poscodx.mysite.dao.GuestbookDao;
 import com.poscodx.web.mvc.Action;
 
 public class DeleteAction implements Action {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sno = request.getParameter("no");
-		Long no = Long.parseLong(sno);
-		String password = request.getParameter("password");
-		
-		new GuestbookDao().deleteByNoAndPassword(no, password);
+		String no = request.getParameter("no");
+		new GuestbookDao().deleteByNo(Long.parseLong(no));
+
 		response.sendRedirect(request.getContextPath() + "/guestbook");
+
 	}
+
 }

@@ -12,30 +12,25 @@ import com.poscodx.mysite.vo.UserVo;
 import com.poscodx.web.mvc.Action;
 
 public class UpdateAction implements Action {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Access Control(보안, 인증체크)
-		HttpSession session = request.getSession();
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			response.sendRedirect(request.getContextPath());
-			return;
-		}
-		//////////////////////////////////////////////////////
-		
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String gender = request.getParameter("gender");
+		String email = request.getParameter("email");
 		
-		UserVo vo = new UserVo();
-		vo.setName(name);
-		vo.setPassword(password);
-		vo.setGender(gender);
-		vo.setNo(authUser.getNo());
+		System.out.println(email);
+		
+		new UserDao().updateNameAndPasswordByEmail(name, password, gender, email);
 
-		new UserDao().update(vo);
-		authUser.setName(name);
+		HttpSession session = request.getSession();
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		
-		response.sendRedirect(request.getContextPath() + "/user?a=updateform");
+		authUser.setName(name);
+		authUser.setGender(gender);
+		
+		response.sendRedirect(request.getContextPath());
 	}
+
 }

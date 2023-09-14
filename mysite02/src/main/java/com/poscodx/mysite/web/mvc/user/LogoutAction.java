@@ -12,11 +12,13 @@ import com.poscodx.web.mvc.Action;
 public class LogoutAction implements Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("authUser");
 		session.invalidate();
 		
 		response.sendRedirect(request.getContextPath());
+
 	}
+
 }

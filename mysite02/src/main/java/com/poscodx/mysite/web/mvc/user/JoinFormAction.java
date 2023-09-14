@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.poscodx.web.mvc.Action;
-import com.poscodx.web.utils.WebUtil;
+import com.poscodx.web.util.WebUtil;
 
 public class JoinFormAction implements Action {
 	@Override
