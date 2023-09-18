@@ -22,4 +22,13 @@ public class UserService {
 	public UserVo getUser(String email, String password) {
 		return userRepository.findByEmailAndPassword(email, password);
 	}
+
+	public UserVo getUser(Long no) {
+		return userRepository.findByNo(no);
+	}
+
+	public void update(UserVo userVo) {
+		userRepository.updateNameAndPasswordByEmail(userVo.getName(), userVo.getPassword(), userVo.getGender(),
+				userVo.getEmail());
+	}
 }

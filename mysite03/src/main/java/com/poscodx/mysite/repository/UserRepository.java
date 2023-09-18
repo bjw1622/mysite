@@ -130,6 +130,53 @@ public class UserRepository {
 
 	}
 
+	public UserVo findByNo(long no) {
+		UserVo userVo = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+
+			String sql = "select email, gender, name " + "from user " + "where no = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, no);
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String email = rs.getString(1);
+				String gender = rs.getString(2);
+				String name = rs.getString(3);
+
+				userVo = new UserVo();
+				userVo.setEmail(email);
+				userVo.setGender(gender);
+				userVo.setName(name);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("User Select error: " + e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return userVo;
+	}
+
 	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 		try {

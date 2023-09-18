@@ -62,13 +62,32 @@ public class UserController {
 	}
 
 	@GetMapping("/update")
-	public String update(HttpSession session) {
+	public String update(HttpSession session, Model model) {
 		// Access Control(접근 제어)
 		UserVo authUser = (UserVo) (session.getAttribute("authUser"));
 		if (authUser == null) {
 			return "redirect:/user/login";
 		}
-		
+		//////////////////////////////
+		UserVo userVo = userService.getUser(authUser.getNo());
+		model.addAttribute("userVo", userVo);
 		return "user/update";
+	}
+
+	@PostMapping("/update")
+	public String update(HttpSession session, UserVo userVo) {
+		// Access Control(접근 제어)
+		UserVo authUser = (UserVo) (session.getAttribute("authUser"));
+		if (authUser == null) {
+			return "redirect:/user/login";
+		}
+		////////////////////////////////////////////////////
+		userVo.setNo(authUser.getNo());
+		userService.update(userVo);
+		
+		// 업데이트를 성공한 다음에
+		authUser.setName(userVo.getName());
+
+		return "redirect:/user/update";
 	}
 }
