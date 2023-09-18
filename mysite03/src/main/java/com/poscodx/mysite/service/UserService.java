@@ -9,14 +9,19 @@ import com.poscodx.mysite.vo.UserVo;
 @Service
 public class UserService {
 	// @Autowired
-	// private MainSender mailSender;
+	// private MailSender mailSender;
 
 	@Autowired
 	private UserRepository userRepository;
 
 	public void join(UserVo vo) {
+		System.out.println(vo);
+		
 		userRepository.insert(vo);
-//		mailSender.send(vo.getEmail(),"","");
+		
+		System.out.println(vo);
+		
+		// mailSender.send(vo.getEmail(), "", "");
 	}
 
 	public UserVo getUser(String email, String password) {
@@ -28,7 +33,6 @@ public class UserService {
 	}
 
 	public void update(UserVo userVo) {
-		userRepository.updateNameAndPasswordByEmail(userVo.getName(), userVo.getPassword(), userVo.getGender(),
-				userVo.getEmail());
+		userRepository.update(userVo);
 	}
 }

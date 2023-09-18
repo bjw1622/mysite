@@ -9,20 +9,19 @@ import com.poscodx.mysite.repository.GuestbookRepository;
 import com.poscodx.mysite.vo.GuestbookVo;
 
 @Service
-public class GueskbookService {
+public class GuestbookService {
 	@Autowired
 	private GuestbookRepository guestbookRepository;
 
-	public List<GuestbookVo> getContentList() {
+	public List<GuestbookVo> getContentsList() {
 		return guestbookRepository.findAll();
 	}
-
-	public void deleteContents(Long no) {
-		guestbookRepository.deleteByNo(no);
+	
+	public Boolean deleteContents(Long no, String password) {
+		return guestbookRepository.deleteByNoAndPassword(no, password);
 	}
-
-	public void addContents(GuestbookVo vo) {
-		guestbookRepository.insert(vo);
+	
+	public Boolean addContents(GuestbookVo vo) {
+		return guestbookRepository.insert(vo);
 	}
-
 }
