@@ -25,23 +25,23 @@ public class GuestbookController {
 		model.addAttribute("list", list);
 		return "guestbook/main";
 	}
-	@RequestMapping("/add")
-	public String add(GuestbookVo vo) {
-		guestbookService.addContents(vo);
-		return "redirect:/";
-	}
-	
 
 	@RequestMapping(value="/delete/{no}", method=RequestMethod.GET)
 	public String delete(@PathVariable("no") Long no, Model model) {
 		model.addAttribute("no", no);
 		return "guestbook/delete";
 	}
-	
+
 	@RequestMapping(value="/delete/{no}", method=RequestMethod.POST)
 	public String delete(@PathVariable("no") Long no, @RequestParam(value="password", required=true, defaultValue="") String password) {
 		guestbookService.deleteContents(no, password);
-		return "redirect:/";
+		return "redirect:/guestbook";
+	}
+
+	@RequestMapping("add")
+	public String add(GuestbookVo vo) {
+		guestbookService.addContents(vo);
+		return "redirect:/guestbook";
+	}
 	
-}
 }

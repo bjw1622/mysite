@@ -1,20 +1,16 @@
 package com.poscodx.mysite.vo;
 
-import java.sql.Date;
-
 public class BoardVo {
 	private Long no;
 	private String title;
 	private String contents;
-	private int hit;
-	private Date reg_date;
-	private int groupNo;
-	private int orderNo;
-	private int depth;
+	private String regDate;
+	private Integer hit;
+	private Integer groupNo;
+	private Integer orderNo;
+	private Integer depth;
 	private Long userNo;
-	private String name;
-	private int total;
-	private int page;
+	private String userName;
 	public Long getNo() {
 		return no;
 	}
@@ -33,34 +29,34 @@ public class BoardVo {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public int getHit() {
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	public Integer getHit() {
 		return hit;
 	}
-	public void setHit(int hit) {
+	public void setHit(Integer hit) {
 		this.hit = hit;
 	}
-	public Date getReg_date() {
-		return reg_date;
-	}
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
-	}
-	public int getGroupNo() {
+	public Integer getGroupNo() {
 		return groupNo;
 	}
-	public void setGroupNo(int groupNo) {
+	public void setGroupNo(Integer groupNo) {
 		this.groupNo = groupNo;
 	}
-	public int getOrderNo() {
+	public Integer getOrderNo() {
 		return orderNo;
 	}
-	public void setOrderNo(int orderNo) {
+	public void setOrderNo(Integer orderNo) {
 		this.orderNo = orderNo;
 	}
-	public int getDepth() {
+	public Integer getDepth() {
 		return depth;
 	}
-	public void setDepth(int depth) {
+	public void setDepth(Integer depth) {
 		this.depth = depth;
 	}
 	public Long getUserNo() {
@@ -69,34 +65,16 @@ public class BoardVo {
 	public void setUserNo(Long userNo) {
 		this.userNo = userNo;
 	}
-	
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
-	public int getTotal() {
-		return total;
-	}
-	public void setTotal(int total) {
-		this.total = total;
-	}
-	
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	@Override
 	public String toString() {
-		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", reg_date="
-				+ reg_date + ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", userNo=" + userNo
-				+ "]";
+		return "BoardVo [no=" + no + ", title=" + title + ", contents=" + contents + ", regDate=" + regDate + ", hit="
+				+ hit + ", groupNo=" + groupNo + ", orderNo=" + orderNo + ", depth=" + depth + ", userNo=" + userNo
+				+ ", userName=" + userName + "]";
 	}
-	
-	
 }
