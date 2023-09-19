@@ -41,7 +41,7 @@
 									<img
 										src="${pageContext.request.contextPath }/assets/images/reply.png">
 								</c:if> <a
-								href="${pageContext.request.contextPath }/board?a=detailboardorreply&no=${vo.no}&userNo=${vo.userNo}&title=${vo.title}&contents=${vo.contents}&groupNo=${vo.groupNo}&depth=${vo.depth}&orderNo=${vo.orderNo}">${vo.title }</a></td>
+								href="${pageContext.request.contextPath }/board/detail/${vo.no}/${vo.userNo}/${vo.title}/${vo.contents}/${vo.groupNo}/${vo.depth}/${vo.orderNo}">${vo.title }</a></td>
 							<td>${vo.name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.reg_date }</td>
@@ -51,7 +51,7 @@
 									</c:when>
 									<c:when test="${authUser.getNo() == vo.userNo }">
 										<a
-											href="${pageContext.request.contextPath }/board?a=deleteboardorreplyform&no=${vo.no}"
+											href="${pageContext.request.contextPath }/board/delete/${vo.no}"
 											class="del">삭제</a>
 									</c:when>
 									<c:otherwise>
