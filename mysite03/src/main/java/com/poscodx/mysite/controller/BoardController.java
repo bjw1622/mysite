@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.poscodx.mysite.security.AuthUser;
 import com.poscodx.mysite.service.BoardService;
 import com.poscodx.mysite.vo.BoardVo;
 import com.poscodx.mysite.vo.UserVo;
@@ -62,14 +64,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/modify/{no}")	
-	public String modify(HttpSession session, @PathVariable("no") Long no, Model model) {
+	public String modify(@AuthUser UserVo authUser, @PathVariable("no") Long no, Model model) {
 		// Access Control(접근 제어)
-		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/user/login";
-		}
-		///////////////////////////////////////////////////////////
-		
 		BoardVo boardVo = boardService.getContents(no, authUser.getNo());
 
 		model.addAttribute("boardVo", boardVo);

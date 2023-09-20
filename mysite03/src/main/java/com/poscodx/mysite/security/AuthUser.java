@@ -1,17 +1,14 @@
 package com.poscodx.mysite.security;
 
 import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
-@Target({ METHOD, TYPE })
-public @interface Auth {
-//	public String value() default "";
-	public String Role() default "User";
+@Target({ METHOD, PARAMETER })
+public @interface AuthUser {
 
-	public boolean test() default false;
 }
