@@ -1,5 +1,7 @@
 package com.poscodx.mysite.controller;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,14 @@ import com.poscodx.mysite.service.FileUploadService;
 import com.poscodx.mysite.service.SiteService;
 import com.poscodx.mysite.vo.SiteVo;
 
-@Auth(Role="ADMIN")
+@Auth(Role = "ADMIN")
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+	@Autowired
+	private ServletContext servletContext;
+
 	@Autowired
 	private SiteService siteService;
 
@@ -33,9 +39,9 @@ public class AdminController {
 	public String update(@RequestParam("f") MultipartFile file, SiteVo vo) {
 		String url = fileUploadService.restore(file);
 		vo.setProfile(url);
-		System.out.println(vo);
 		siteService.updateSite(vo);
-		return "redirect:/admin";  
+		servletContext.setAttribute("siteVo", vo);
+		return "redirect:/admin";
 	}
 //	@RequestMapping("/main/update")
 //	public String update(@RequestParam("f") MultipartFile file, SiteVo vo) {
@@ -50,7 +56,6 @@ public class AdminController {
 //		return "redirect:/admin";
 //	}
 
-	
 	@RequestMapping("/guestbook")
 	public String guestbook() {
 		return "admin/guestbook";
@@ -64,5 +69,5 @@ public class AdminController {
 	@RequestMapping("/user")
 	public String user() {
 		return "admin/user";
-	}	
+	}
 }

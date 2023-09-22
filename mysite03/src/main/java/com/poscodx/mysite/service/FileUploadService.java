@@ -14,47 +14,47 @@ import com.poscodx.mysite.exception.FileUploadServiceException;
 @Service
 public class FileUploadService {
 	private static String SAVE_PATH = "/Users/jay/mysite-uploads";
-	private static String URL_PATH = "/images";
-
+	private static String URL_PATH = "/assets/upload-images";
+	
 	public String restore(MultipartFile file) {
 		String url = null;
-
+		
 		try {
 			File uploadDirectory = new File(SAVE_PATH);
-			if (!uploadDirectory.exists()) {
+			if(!uploadDirectory.exists()) {
 				uploadDirectory.mkdirs();
 			}
-
-			if (file.isEmpty()) {
+			
+			if(file.isEmpty()) {
 				return url;
 			}
-
+			
 			String originFilename = file.getOriginalFilename();
 			String extName = originFilename.substring(originFilename.lastIndexOf(".") + 1);
 			String saveFilename = generateSaveFilename(extName);
 			Long fileSize = file.getSize();
-
+			
 			System.out.println("########" + originFilename);
 			System.out.println("########" + saveFilename);
 			System.out.println("########" + fileSize);
-
+			
 			byte[] data = file.getBytes();
 			OutputStream os = new FileOutputStream(SAVE_PATH + "/" + saveFilename);
 			os.write(data);
 			os.close();
-
+			
 			url = URL_PATH + "/" + saveFilename;
-
-		} catch (IOException ex) {
+			
+		} catch(IOException ex) {
 			throw new FileUploadServiceException(ex.toString());
 		}
-
+		
 		return url;
 	}
 
 	private String generateSaveFilename(String extName) {
 		String filename = "";
-
+		
 		Calendar calendar = Calendar.getInstance();
 		filename += calendar.get(Calendar.YEAR);
 		filename += calendar.get(Calendar.MONTH);
@@ -64,7 +64,7 @@ public class FileUploadService {
 		filename += calendar.get(Calendar.SECOND);
 		filename += calendar.get(Calendar.MILLISECOND);
 		filename += ("." + extName);
-
+		
 		return filename;
 	}
 
