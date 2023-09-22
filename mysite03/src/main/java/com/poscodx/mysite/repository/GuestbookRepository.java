@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.poscodx.mysite.vo.GuestbookVo;
+import com.poscodx.mysite.vo.GuestBookVo;
 
 @Repository
 public class GuestbookRepository {
@@ -24,12 +24,12 @@ public class GuestbookRepository {
 		return count == 1;
 	}
 	
-	public Boolean insert(GuestbookVo vo) {
+	public Boolean insert(GuestBookVo vo) {
 		int count = sqlSession.insert("guestbook.insert", vo);
 		return count == 1;
 	}
 	
-	public List<GuestbookVo> findAll() {
+	public List<GuestBookVo> findAll() {
 		return sqlSession.selectList("guestbook.findAll");
 	}
 }

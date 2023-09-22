@@ -9,23 +9,27 @@ import org.springframework.util.StopWatch;
 @Component
 @Aspect
 public class MeasureExecutionTimeAspect {
+	
+	// *..*는 com.poscodx.mysite까지를 나타낸다.
 	@Around("execution(* *..*.repository.*.*(..)) || execution(* *..*.service.*.*(..)) || execution(* *..*.controller.*.*(..))")
-	public Object adviceAround(ProceedingJoinPoint pjp) throws Throwable {
-		// before
+	public Object adviceAround(ProceedingJoinPoint pjp) throws Throwable{
+		
+		//before
 		StopWatch sw = new StopWatch();
 		sw.start();
 		
 		Object result = pjp.proceed();
 		
-		// after
+		
+		//after
 		sw.stop();
 		long totalTime = sw.getTotalTimeMillis();
 		String className = pjp.getTarget().getClass().getName();
 		String methodName = pjp.getSignature().getName();
-		String taskName = className + "." + methodName;
+		String taskName = className +"."+methodName;
 		
-		System.out.println("[Execution Time][" + taskName + "] " + totalTime + "mills");
-
+		System.out.println("[Execution Time][" + taskName + "]"+ totalTime + "millisecond");
+		
 		return result;
 	}
 }
