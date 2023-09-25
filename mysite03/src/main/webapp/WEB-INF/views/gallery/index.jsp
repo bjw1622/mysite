@@ -19,8 +19,9 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/lightbox.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <c:if test="${not empty authUser && authUser.role=='ADMIN' }">
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(function(){
 		// 업로드 다이알로그
 		var dialogUpload = $( "#dialog-upload-form" ).dialog({
@@ -52,7 +53,7 @@
 </head>
 <body>
 	<div id="container">
-		<c:import url="/WEB-INF/views/include/header.jsp" />
+		<c:import url="/WEB-INF/views/includes/header.jsp" />
 		<div id="content">
 			<div id="gallery">
 				<div>
@@ -63,29 +64,59 @@
 				</div>
 				<ul>
 					<li>
-						<a	href="${pageContext.request.contextPath }/assets/galley-examples/im1.jpg"
+						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg"
 							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/galley-examples/im1.jpg')">&nbsp;</a>
+							data-lightbox="gallery"
+							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im1.jpg')">&nbsp;</a>
 						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
 							<a	href="" class="del-button" title="삭제">삭제</a>
 						</c:if>
 					</li>
 					<li>
-						<a	href="${pageContext.request.contextPath }/assets/galley-examples/im2.jpg"
+						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im2.jpg"
 							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/galley-examples/im2.jpg')">&nbsp;</a>
+							data-lightbox="gallery"
+							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im2.jpg')">&nbsp;</a>
 						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
 							<a	href="" class="del-button" title="삭제">삭제</a>
 						</c:if>
 					</li>
 					<li>
-						<a	href="${pageContext.request.contextPath }/assets/galley-examples/im3.jpg"
+						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im3.jpg"
 							class="image"
-							style="background-image:url('${pageContext.request.contextPath }/assets/galley-examples/im3.jpg')">&nbsp;</a>
+							data-lightbox="gallery"
+							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im3.jpg')">&nbsp;</a>
 						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
 							<a	href="" class="del-button" title="삭제">삭제</a>
 						</c:if>
-					</li>					
+					</li>
+					<li>
+						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im5.jpg"
+							class="image"
+							data-lightbox="gallery"
+							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im5.jpg')">&nbsp;</a>
+						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
+							<a	href="" class="del-button" title="삭제">삭제</a>
+						</c:if>
+					</li>
+					<li>
+						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im6.jpg"
+							class="image"
+							data-lightbox="gallery"
+							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im6.jpg')">&nbsp;</a>
+						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
+							<a	href="" class="del-button" title="삭제">삭제</a>
+						</c:if>
+					</li>
+					<li>
+						<a	href="${pageContext.request.contextPath }/assets/gallery-examples/im3.jpg"
+							class="image"
+							data-lightbox="gallery"
+							style="background-image:url('${pageContext.request.contextPath }/assets/gallery-examples/im3.jpg')">&nbsp;</a>
+						<c:if test="${not empty authUser && authUser.role=='ADMIN' }">
+							<a	href="" class="del-button" title="삭제">삭제</a>
+						</c:if>
+					</li>																				
 				</ul>
 			</div>
 
@@ -100,10 +131,10 @@
 				</div>
 			</c:if>
 		</div>
-		<c:import url="/WEB-INF/views/include/navigation.jsp">
+		<c:import url="/WEB-INF/views/includes/navigation.jsp">
 			<c:param name="menu" value="gallery" />
 		</c:import>
-		<c:import url="/WEB-INF/views/include/footer.jsp" />
+		<c:import url="/WEB-INF/views/includes/footer.jsp" />
 	</div>
 </body>
 </html>
