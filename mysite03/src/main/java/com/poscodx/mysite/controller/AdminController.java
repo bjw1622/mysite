@@ -46,6 +46,7 @@ public class AdminController {
 //	@RequestMapping("/main/update")
 //	public String update(@RequestParam("f") MultipartFile file, SiteVo vo) {
 //		System.out.println(vo);
+	
 //		String profile = fileUploadService.restore(file);
 //		System.out.println(profile);
 //		System.out.println(vo);
