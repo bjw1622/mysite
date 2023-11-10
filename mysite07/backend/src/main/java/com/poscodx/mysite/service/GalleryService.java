@@ -18,11 +18,11 @@ public class GalleryService {
 	public List<GalleryVo> getGalleryImages() {
 		return galleryRepository.findAll();
 	}
-	
+
 	public Boolean deleteGalleryImage(Long no) {
 		return galleryRepository.delete(no);
 	}
-	
+
 	public Boolean addGalleryImage(GalleryVo vo) {
 		return galleryRepository.insert(vo);
 	}

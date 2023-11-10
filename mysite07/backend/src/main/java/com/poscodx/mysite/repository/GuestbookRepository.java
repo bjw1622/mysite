@@ -22,7 +22,7 @@ public class GuestbookRepository {
 	public Boolean insert(GuestbookVo vo) {
 		return 1 == sqlSession.insert("guestbook.insert", vo);
 	}
-	
+
 	public Boolean delete(GuestbookVo vo) {
 		return 1 == sqlSession.delete("guestbook.delete", vo);
 	}

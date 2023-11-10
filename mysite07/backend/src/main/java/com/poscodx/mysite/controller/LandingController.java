@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LandingController {
-	
+
 	@RequestMapping("")
 	public String index() {
 		return "index";
 	}
-	
+
     @GetMapping("favicon.ico")
     @ResponseBody
     void returnNoFavicon() {
-    }	
+    }
 }

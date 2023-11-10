@@ -32,13 +32,13 @@ public class GuestbookController {
 	@PostMapping("")
 	public ResponseEntity<JsonResult> add(@RequestBody GuestbookVo vo) {
 		guestbookService.addContents(vo);
-		vo.setPassword("");		
+		vo.setPassword("");
 		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(vo));
 	}
 
 	@DeleteMapping("/{no}")
 	public ResponseEntity<JsonResult> delete(@PathVariable("no") Long no, @RequestParam(value="password", required=true, defaultValue="") String password) {
-		Boolean result = guestbookService.deleteContents(no, password);		
+		Boolean result = guestbookService.deleteContents(no, password);
 		return ResponseEntity.status(HttpStatus.OK).body(JsonResult.success(result ? no : null));
 	}
 }
